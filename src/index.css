@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-handwritten {
+    font-family: 'Patrick Hand', 'Caveat', cursive;
+  }
+  .font-cursive {
+    font-family: 'Caveat', cursive;
+  }
+  .font-cute {
+    font-family: 'Fredoka', 'Quicksand', sans-serif;
+  }
+  .font-body {
+    font-family: 'Quicksand', sans-serif;
+  }
+}
+
+/* Custom Paper Texture Background */
+.paper-bg {
+  background-color: #FFFDF6;
+  background-image: 
+    radial-gradient(#EAB308 0.55px, transparent 0.55px),
+    radial-gradient(#FEF08A 0.55px, #FFFDF6 0.55px);
+  background-size: 22px 22px;
+  background-position: 0 0, 11px 11px;
+  background-opacity: 0.15;
+}
+
+/* Wavy / Scribble Doodle Border Classes */
+.doodle-border-sm {
+  border: 3px solid #EAB308;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+.doodle-border-lg {
+  border: 4px dashed #CA8A04;
+  border-radius: 20px 255px 20px 255px/255px 20px 255px 20px;
+}
+
+.polaroid-shadow {
+  box-shadow: 0 10px 25px -5px rgba(234, 179, 8, 0.2), 0 8px 10px -6px rgba(180, 83, 9, 0.1);
+}
+
+.washi-tape-yellow {
+  background-color: rgba(254, 240, 138, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transform: rotate(-3deg);
+  border-left: 2px dashed rgba(202, 138, 4, 0.4);
+  border-right: 2px dashed rgba(202, 138, 4, 0.4);
+}
+
+.washi-tape-pink {
+  background-color: rgba(251, 207, 232, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transform: rotate(2deg);
+  border-left: 2px dashed rgba(219, 39, 119, 0.3);
+  border-right: 2px dashed rgba(219, 39, 119, 0.3);
+}
+
+.washi-tape-green {
+  background-color: rgba(187, 247, 208, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transform: rotate(-1deg);
+}
+
+@keyframes floatSoft {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float {
+  animation: floatSoft 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
