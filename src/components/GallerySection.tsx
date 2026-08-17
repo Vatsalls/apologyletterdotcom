@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PhotoItem } from '../types';
-import { Heart, Plus, Sparkles, X, Upload, Check } from 'lucide-react';
+import { Plus, Sparkles, X, Upload, Check } from 'lucide-react';
 
 interface GallerySectionProps {
   photos: PhotoItem[];
-  onAddPhoto: (photo: Omit<PhotoItem, 'id' | 'likes'>) => void;
-  onLikePhoto: (id: string) => void;
+  onAddPhoto: (photo: Omit<PhotoItem, 'id'>) => void;
 }
 
 export const GallerySection: React.FC<GallerySectionProps> = ({
   photos,
   onAddPhoto,
-  onLikePhoto,
 }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoItem | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -174,18 +172,6 @@ export const GallerySection: React.FC<GallerySectionProps> = ({
                     </span>
                   )}
                 </div>
-
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onLikePhoto(photo.id);
-                  }}
-                  className="flex items-center gap-1 text-xs font-cute font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-200 px-2 py-1 rounded-full transition-colors"
-                  title="Send a heart"
-                >
-                  <Heart className="w-3.5 h-3.5 fill-rose-500 text-rose-500" />
-                  <span>{photo.likes || 1}</span>
-                </button>
               </div>
 
             </motion.div>
