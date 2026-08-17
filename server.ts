@@ -190,11 +190,11 @@ app.post("/api/photos", async (req, res) => {
     const newPhoto = {
       id,
       url: finalUrl,
-     
-     
+      caption: caption || "",
+      date: date || new Date().toISOString(),
       frame_style: frameStyle || "polaroid",
       sticker: sticker || "",
-   
+      
     };
 
     const { error: insertError } = await supabase.from("photos").insert(newPhoto);
