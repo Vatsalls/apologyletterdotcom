@@ -162,7 +162,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-cute font-bold text-amber-950 text-base flex items-center gap-1.5">
-                        <span>{msg.mood || ''}</span> {msg.senderName}
+                        {msg.senderName}
                       </span>
                       <span className="font-cute text-xs text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">
                         {new Date(msg.timestamp).toLocaleString()}
