@@ -63,7 +63,7 @@ app.post("/api/visit", async (req, res) => {
 
 // Save a note (kept privately, viewable only from the settings panel)
 app.post("/api/send-message", async (req, res) => {
-  const { senderName, message, mood } = req.body;
+  const { senderName, message } = req.body;
   if (!message || message.trim() === "") {
     return res.status(400).json({ error: "Message content cannot be empty!" });
   }
@@ -72,7 +72,6 @@ app.post("/api/send-message", async (req, res) => {
     id: "msg-" + Date.now() + "-" + Math.random().toString(36).substring(2, 6),
     sender_name: senderName || "Your Name",
     message: message.trim(),
-    mood: mood || "",
     timestamp: new Date().toISOString(),
     read: false,
   };
@@ -112,7 +111,6 @@ app.get("/api/admin/data", async (req, res) => {
         id: m.id,
         senderName: m.sender_name,
         message: m.message,
-        mood: m.mood,
         timestamp: m.timestamp,
         read: m.read,
       })),
@@ -154,7 +152,6 @@ app.get("/api/photos", async (req, res) => {
       date: p.date,
       frameStyle: p.frame_style,
       sticker: p.sticker,
-      likes: p.likes,
     })),
   });
 });
@@ -194,7 +191,6 @@ app.post("/api/photos", async (req, res) => {
       date: date || new Date().toISOString(),
       frame_style: frameStyle || "polaroid",
       sticker: sticker || "",
-      
     };
 
     const { error: insertError } = await supabase.from("photos").insert(newPhoto);
@@ -212,7 +208,6 @@ app.post("/api/photos", async (req, res) => {
         date: newPhoto.date,
         frameStyle: newPhoto.frame_style,
         sticker: newPhoto.sticker,
-        likes: newPhoto.likes,
       },
     });
   } catch (err) {
