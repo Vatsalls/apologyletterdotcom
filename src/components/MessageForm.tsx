@@ -6,13 +6,7 @@ interface MessageFormProps {
   onSendMessage: (senderName: string, message: string, mood: string) => Promise<any>;
 }
 
-const moods = [
-  { emoji: '😊', label: 'Happy' },
-  { emoji: '🥰', label: 'Loving' },
-  { emoji: '😢', label: 'Sorry' },
-  { emoji: '🥺', label: 'Sincere' },
-  { emoji: '😂', label: 'Funny' },
-];
+
 
 export const MessageForm: React.FC<MessageFormProps> = ({ onSendMessage }) => {
   const [senderName, setSenderName] = useState('Your Sunflower ');
@@ -76,7 +70,7 @@ export const MessageForm: React.FC<MessageFormProps> = ({ onSendMessage }) => {
                 type="text"
                 value={senderName}
                 onChange={(e) => setSenderName(e.target.value)}
-                placeholder="Your Sunflower"
+               
                 className="w-full p-3 bg-white border-2 border-amber-300 rounded-xl font-handwritten text-xl text-amber-950 focus:outline-none focus:ring-2 focus:ring-amber-400"
               />
             </div>
@@ -115,7 +109,7 @@ export const MessageForm: React.FC<MessageFormProps> = ({ onSendMessage }) => {
               rows={5}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Write your sweet message, funny thoughts, or love note here..."
+              placeholder="Write your message..."
               className="w-full p-4 bg-white border-2 border-amber-300 rounded-2xl font-handwritten text-2xl text-amber-950 focus:outline-none focus:ring-2 focus:ring-amber-400"
             />
           </div>
