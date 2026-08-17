@@ -3,13 +3,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Send, Heart, Sun } from 'lucide-react';
 
 interface MessageFormProps {
-  onSendMessage: (senderName: string, message: string, mood: string) => Promise<any>;
+  onSendMessage: (senderName: string, message: string) => Promise<any>;
 }
 
 export const MessageForm: React.FC<MessageFormProps> = ({ onSendMessage }) => {
   const [senderName, setSenderName] = useState('Your Sunflower ');
   const [message, setMessage] = useState('');
-  const [selectedMood, setSelectedMood] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [sentSuccess, setSentSuccess] = useState(false);
 
@@ -21,7 +20,7 @@ export const MessageForm: React.FC<MessageFormProps> = ({ onSendMessage }) => {
     setIsSending(true);
 
     try {
-      await onSendMessage(senderName, message, selectedMood);
+      await onSendMessage(senderName, message);
       setSentSuccess(true);
       setMessage('');
     } catch (err) {
@@ -58,43 +57,17 @@ export const MessageForm: React.FC<MessageFormProps> = ({ onSendMessage }) => {
         {/* Form */}
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
 
-          {/* Sender Name & Mood */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1">
-              <label className="block font-cute text-sm font-bold text-amber-900 mb-1">
-                Your Name
-              </label>
-              <input
-                type="text"
-                value={senderName}
-                onChange={(e) => setSenderName(e.target.value)}
-               
-                className="w-full p-3 bg-white border-2 border-amber-300 rounded-xl font-handwritten text-xl text-amber-950 focus:outline-none focus:ring-2 focus:ring-amber-400"
-              />
-            </div>
-
-            <div>
-              <label className="block font-cute text-sm font-bold text-amber-900 mb-1">
-                Mood
-              </label>
-              <div className="flex items-center gap-2 pt-1">
-                {moods.map((m) => (
-                  <button
-                    key={m.emoji}
-                    type="button"
-                    onClick={() => setSelectedMood(m.emoji)}
-                    className={`p-2 rounded-xl border-2 text-xl transition-all ${
-                      selectedMood === m.emoji
-                        ? 'bg-[#FEF08A] border-[#CA8A04] scale-110 shadow-xs'
-                        : 'bg-white border-amber-200 opacity-70 hover:opacity-100'
-                    }`}
-                    title={m.label}
-                  >
-                    {m.emoji}
-                  </button>
-                ))}
-              </div>
-            </div>
+          {/* Sender Name */}
+          <div>
+            <label className="block font-cute text-sm font-bold text-amber-900 mb-1">
+              Your Name
+            </label>
+            <input
+              type="text"
+              value={senderName}
+              onChange={(e) => setSenderName(e.target.value)}
+              className="w-full p-3 bg-white border-2 border-amber-300 rounded-xl font-handwritten text-xl text-amber-950 focus:outline-none focus:ring-2 focus:ring-amber-400"
+            />
           </div>
 
           {/* Message Area */}
