@@ -5,14 +5,12 @@ export interface PhotoItem {
   date?: string;
   frameStyle: 'polaroid' | 'sunflower' | 'scribble' | 'notebook' | 'tape';
   sticker?: string;
-  likes?: number;
 }
 
 export interface MessageItem {
   id: string;
   senderName: string;
   message: string;
-  mood?: string;
   timestamp: string;
   read?: boolean;
 }
