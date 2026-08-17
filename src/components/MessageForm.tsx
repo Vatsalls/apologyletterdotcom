@@ -6,7 +6,13 @@ interface MessageFormProps {
   onSendMessage: (senderName: string, message: string, mood: string) => Promise<any>;
 }
 
-
+const moods = [
+  { emoji: '😊', label: 'Happy' },
+  { emoji: '🥹', label: 'Sentimental' },
+  { emoji: '😢', label: 'Sorry' },
+  { emoji: '❤️', label: 'Loving' },
+  { emoji: '🌻', label: 'Sunny' },
+];
 
 export const MessageForm: React.FC<MessageFormProps> = ({ onSendMessage }) => {
   const [senderName, setSenderName] = useState('Your Sunflower ');
