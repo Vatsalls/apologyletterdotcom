@@ -68,7 +68,7 @@ export default function App() {
     }
   };
 
-  const handleAddPhoto = async (newPhoto: Omit<PhotoItem, 'id' | 'likes'>) => {
+  const handleAddPhoto = async (newPhoto: Omit<PhotoItem, 'id'>) => {
     try {
       const res = await fetch('/api/photos', {
         method: 'POST',
@@ -93,21 +93,14 @@ export default function App() {
     }
   };
 
-  const handleLikePhoto = (id: string) => {
-    setPhotos(
-      photos.map((p) => (p.id === id ? { ...p, likes: (p.likes || 0) + 1 } : p))
-    );
-  };
-
   const handleSendMessage = async (
     senderName: string,
-    message: string,
-    mood: string
+    message: string
   ) => {
     const res = await fetch('/api/send-message', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ senderName, message, mood }),
+      body: JSON.stringify({ senderName, message }),
     });
 
     const data = await res.json();
@@ -138,7 +131,6 @@ export default function App() {
         <GallerySection
           photos={photos}
           onAddPhoto={handleAddPhoto}
-          onLikePhoto={handleLikePhoto}
         />
 
         {/* Message Form */}
